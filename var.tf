@@ -36,5 +36,9 @@ variable "instance" {
       name = "redis"
       type = "t3.micro"
     }
+    cart = {
+      name = "cart"
+      type = "t3.micro"
+    }
   }
 }
