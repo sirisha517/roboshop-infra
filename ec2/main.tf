@@ -5,57 +5,51 @@ data "aws_ami" "ami" {
 }
 
 resource "aws_instance" "ec2" {
-  ami                    = data.aws_ami.ami.image_id
-  instance_type          = var.instance_type
-  vpc_security_group_ids = [aws_security_group.sg.id]
-  tags = {
-    Name = var.component
+  ami = data.aws_ami.ami.image_id
+  instance_type = var.instance_type
+  vpc_security_group_ids = [var.sg_id]
+  tags ={
+    Name =  var.component
   }
-}
-
-resource "null_resource" "provisioner" {
   provisioner "remote-exec" {
-
     connection {
-      host     = aws_instance.ec2.public_ip
-      user     = "centos"
+      host = self.public_ip
+      user = "centos"
       password = "DevOps321"
     }
-
     inline = [
-      "git clone https://github.com/sirisha517/roboshop_shell",
-      "cd roboshop-shell",
-      "sudo bash ${var.component}.sh ${var.password}"
+    "git clone https://github.com/sirisha517/roboshop_shell",
+      "cd roboshop_shell",
+      "sudo bash ${var.component}.sh"
     ]
 
   }
-
 }
+
 
 resource "aws_security_group" "sg" {
   name        = "${var.component}-${var.env}-sg"
-  description = "Allow TLS inbound traffic"
+  description = "allow_all TLS inbound traffic"
 
   ingress {
-    description = "ALL"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    description      = "TLS from VPC"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   tags = {
     Name = "${var.component}-${var.env}-sg"
   }
 }
-
 resource "aws_route53_record" "record" {
   zone_id = "Z0640963AEF75NOLDKGO"
   name    = "${var.component}-dev.devops517test.online"
@@ -69,4 +63,3 @@ variable "instance_type" {}
 variable "env" {
   default = "dev"
 }
-variable "password" {}
