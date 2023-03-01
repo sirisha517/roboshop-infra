@@ -22,7 +22,7 @@ resource "null_resource" "provisioner" {
       password = "DevOps321"
     }
     inline = [
-      "git clone https://github.com/sirisha517/roboshop_shell",
+      "git clone https://github.com/raghudevopsb71/roboshop-shell",
       "cd roboshop_shell",
       "sudo bash ${var.component}.sh"
     ]
@@ -56,7 +56,7 @@ resource "aws_security_group" "sg" {
 }
 resource "aws_route53_record" "record" {
   zone_id = "Z0640963AEF75NOLDKGO"
-  name    = "${var.component}.devops517test.online"
+  name    = "${var.component}-dev.devops517test.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.ec2.private_ip]
