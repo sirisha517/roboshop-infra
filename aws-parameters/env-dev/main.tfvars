@@ -20,11 +20,11 @@ parameters = [
   { name = "dev.cart.catalogue_host", value = "catalogue-dev.devops517test.online", type = "String" },
   { name = "dev.cart.catalogue_port", value = "8080", type = "String" }
 ]
-## this is not going to be the practice in the companies , we should not keep passwords in git repos
+
+### THIS IS NOT GOING TO BE THE PRACTICE IN COMPANIES, WE SHOULD NOT KEEP PASSWORDS IN GIT REPOS
 secrets = [
-  { name = "dev.mysql.password", value = "RoboShop@1", type = "SecureString"},
-  { name = "dev.payment.amqp_user", value = "roboshop", type = "SecureString"},
-  { name = "dev.payment.amqp_pass", value = "roboshop123", type = "SecureString"},
-  { name = "dev.rabbitmq.rabbitmq_user", value = "roboshop", type = "SecureString"},
-  { name = "dev.rabbitmq.rabbitmq_pass", value = "roboshop123", type = "SecureString"}
-]
+  { name = "dev.mysql.password", value = "RoboShop@1", type = "SecureString" },
+  { name = "dev.payment.amqp_user", value = "roboshop", type = "SecureString" },
+  { name = "dev.payment.amqp_pass", value = "roboshop123", type = "SecureString" },
+  { name = "dev.rabbitmq.amqp_user", value = "roboshop", type = "SecureString" },
+  { name = "dev.rabbitmq.amqp_pass", value = "roboshop123", type = "SecureString" }
