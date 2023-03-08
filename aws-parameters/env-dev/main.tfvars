@@ -22,5 +22,9 @@ parameters = [
 ]
 ## this is not going to be the practice in the companies , we should not keep passwords in git repos
 secrets = [
-  { name = "test", value = "8080", type = "SecureString"}
+  { name = "dev.mysql.password", value = "RoboShop@1", type = "SecureString"},
+  { name = "dev.payment.amqp_user", value = "roboshop", type = "SecureString"},
+  { name = "dev.payment.amqp_pass", value = "roboshop123", type = "SecureString"}
+  { name = "dev.rabbitmq.rabbitmq_user", value = "roboshop", type = "SecureString"}
+  { name = "dev.rabbitmq.rabbitmq_pass", value = "roboshop123", type = "SecureString"}
 ]
