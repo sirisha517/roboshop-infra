@@ -1,14 +1,14 @@
 instances = {
-    frontend = {
-      name = "frontend"
-      type = "t3.micro"
-    }
   frontend = {
     name = "frontend"
     type = "t3.micro"
   }
-  frontend = {
-    name = "frontend"
+  mongodb = {
+    name = "mongodb"
+    type = "t3.micro"
+  }
+  catalogue = {
+    name = "catalogue"
     type = "t3.micro"
   }
   redis = {
@@ -40,5 +40,3 @@ instances = {
     type = "t3.micro"
   }
 }
-
-env = "dev"
