@@ -40,3 +40,5 @@ instances = {
     type = "t3.micro"
   }
 }
+
+env = "dev"
