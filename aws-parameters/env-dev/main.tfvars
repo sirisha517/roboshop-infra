@@ -19,7 +19,8 @@ parameters = [
   { name = "dev.cart.redis_host", value = "redis-dev.devops517test.online", type = "String" },
   { name = "dev.cart.catalogue_host", value = "catalogue-dev.devops517test.online", type = "String" },
   { name = "dev.cart.catalogue_port", value = "8080", type = "String" }
-
-
-
+]
+## this is not going to be the practice in the companies , we should not keep passwords in git repos
+secrets = [
+  { name = "test", value = "8080" type = "SecureString"}
 ]
