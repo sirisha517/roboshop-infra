@@ -22,5 +22,5 @@ parameters = [
 ]
 ## this is not going to be the practice in the companies , we should not keep passwords in git repos
 secrets = [
-  { name = "test", value = "8080" type = "SecureString"}
+  { name = "test", value = "8080", type = "SecureString"}
 ]
