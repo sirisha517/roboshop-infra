@@ -1,6 +1,6 @@
 tags = {
-  bu-unit-name = "ecommerece"
-  app-name     = "roboshop"
-  owner        = "ecom-bu"
-  cost-center  = 1001
+  bu_unit_name = "ecommerece"
+  app_name     = "roboshop"
+  owner        = "ecom_bu"
+  cost_center  = 1001
 }
