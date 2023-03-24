@@ -4,10 +4,15 @@ vpc = {
   main = {
     vpc_cidr = "10.0.0.0/16"
     public_subnets = {
-      public = {
-        name = "public"
-        cidr_block = [ "10.0.0.0/24" ,"10.0.1.0/24"]
-
+      public_az1 = {
+        name = "public_az1"
+        cidr_block =  "10.0.0.0/24"
+        availability_zone = "us-east-1a"
+      }
+      public_az2 = {
+        name = "public_az2"
+        cidr_block =  "10.0.1.0/24"
+        availability_zone = "us-east-1b"
       }
     }
     private_subnets = {
