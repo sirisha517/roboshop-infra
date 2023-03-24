@@ -16,17 +16,35 @@ vpc = {
       }
     }
     private_subnets = {
-      web = {
-        name = "web"
-        cidr_block = [ "10.0.2.0/24" ,"10.0.3.0/24"]
+      web_az1 = {
+        name = "web_az1"
+        cidr_block =  "10.0.2.0/24"
+        availability_zone = "us-east-1a"
       }
-      app = {
-        name = "app"
-        cidr_block = [ "10.0.4.0/24" ,"10.0.5.0/24"]
+      web_az2 = {
+        name = "web_az2"
+        cidr_block =  "10.0.3.0/24"
+        availability_zone = "us-east-1b"
       }
-      db = {
-        name = "public"
-        cidr_block = [ "10.0.6.0/24" ,"10.0.7.0/24"]
+      app_az1 = {
+        name = "app_az1"
+        cidr_block =  "10.0.4.0/24"
+        availability_zone = "us-east-1a"
+      }
+      app_az2 = {
+        name = "app_az2"
+        cidr_block =  "10.0.5.0/24"
+        availability_zone = "us-east-1b"
+      }
+      db_az1 = {
+        name = "db_az1"
+        cidr_block =  "10.0.6.0/24"
+        availability_zone = "us-east-1a"
+      }
+      db_az2 = {
+        name = "db_az2"
+        cidr_block =  "10.0.7.0/24"
+        availability_zone = "us-east-1b"
       }
     }
   }
