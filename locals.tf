@@ -1,5 +1,7 @@
 locals {
-  db-subnet-ids = tolist([module.vpc["main"].private_subnet["db_az1"].id,module.vpc["main"].private_subnet["db_az2"].id])
-  web-subnet-ids = tolist([module.vpc["main"].private_subnet["web_az1"].id,module.vpc["main"].private_subnet["web_az2"].id])
-  app-subnet-ids = tolist([module.vpc["main"].private_subnet["app_az1"].id,module.vpc["main"].private_subnet["app_az2"].id])
+  subnet_ids = {
+    db  = tolist([module.vpc["main"].private_subnets["db-az1"].id, module.vpc["main"].private_subnets["db-az2"].id])
+    app = tolist([module.vpc["main"].private_subnets["app-az1"].id, module.vpc["main"].private_subnets["app-az2"].id])
+    web = tolist([module.vpc["main"].private_subnets["web-az1"].id, module.vpc["main"].private_subnets["web-az2"].id])
+  }
 }
