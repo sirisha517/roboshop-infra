@@ -74,7 +74,7 @@ rds = {
     instance_class          = "db.t3.small"
   }
 }
-elastcicache = {
+elasticcache = {
   main = {
     engine                  = "redis"
     engine_version          = "6.x"
