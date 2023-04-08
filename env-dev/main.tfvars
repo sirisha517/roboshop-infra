@@ -70,5 +70,15 @@ rds = {
     engine_version          = "5.7.mysql_aurora.2.11.1"
     backup_retention_period = 1
     preferred_backup_window = "07:00-09:00"
+    no_of_instances         = 1
+    instance_class          = "db.t3.small"
+  }
+}
+elastcicache = {
+  main = {
+    engine                  = "redis"
+    engine_version          = "6.x"
+    node_type               = "cache.t3.micro"
+    num_cache_nodes         = 1
   }
 }
