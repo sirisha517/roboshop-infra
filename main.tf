@@ -83,3 +83,16 @@ module "alb" {
   subnets            = lookup(local.subnet_ids,each.value["subnet_name"],null)
 
 }
+module "app" {
+  source = "git::https://github.com/sirisha517/tf-module-app.git"
+  env    = var.env
+  tags   = var.tags
+
+  for_each           = var.alb
+  component          = each.value["component"]
+  instance_type      = each.value["instance_type"]
+  desired_capacity   = each.value["desired_capacity"]
+  max_size           = each.value["max_size"]
+  min_size           = each.value["min_size"]
+  subnet_name        = lookup(local.subnet_ids,each.value["subnet_name"],null )
+}
