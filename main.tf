@@ -88,7 +88,7 @@ module "app" {
   env    = var.env
   tags   = var.tags
 
-  for_each           = var.alb
+  for_each           = var.app
   component          = each.value["component"]
   instance_type      = each.value["instance_type"]
   desired_capacity   = each.value["desired_capacity"]
