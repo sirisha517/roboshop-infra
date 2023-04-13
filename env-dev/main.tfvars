@@ -1,5 +1,5 @@
 env          = "dev"
-
+bastion_cidr = ["172.31.15.153/32"]
 vpc = {
   main = {
     vpc_cidr = "10.0.0.0/16"
@@ -113,6 +113,7 @@ app = {
     max_size           = 4
     min_size           = 1
     subnet_name        = "app"
+
   }
   cart = {
     component          = "cart"

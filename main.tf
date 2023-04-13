@@ -87,6 +87,7 @@ module "app" {
   source = "git::https://github.com/sirisha517/tf-module-app.git"
   env    = var.env
   tags   = var.tags
+  vpc_id = module.vpc["main"].vpc_id
 
   for_each           = var.app
   component          = each.value["component"]
@@ -95,4 +96,8 @@ module "app" {
   max_size           = each.value["max_size"]
   min_size           = each.value["min_size"]
   subnets            = lookup(local.subnet_ids,each.value["subnet_name"],null )
+  bastion_cidr       = var.bastion_cidr
+}
+output "vpc" {
+  value = module.vpc
 }
