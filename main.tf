@@ -97,6 +97,8 @@ module "app" {
   min_size           = each.value["min_size"]
   subnets            = lookup(local.subnet_ids,each.value["subnet_name"],null )
   bastion_cidr       = var.bastion_cidr
+  port               = each.value["port"]
+  allow_app_to       = lookup(local.subnet_cidr, each.value["allow_app_to"],null)
 }
 output "vpc" {
   value = module.vpc
