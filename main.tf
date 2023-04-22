@@ -43,7 +43,7 @@ module "rds" {
 }
 
 module "elasticcache" {
-  source = "git::https://github.com/sirisha517/tf-module-elasticache.git"
+  source = "git::https://github.com/sirisha517/tf-module-elasticcache.git"
   env    = var.env
   tags   = var.tags
 
