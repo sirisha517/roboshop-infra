@@ -105,15 +105,16 @@ alb = {
 
 app = {
   catalogue = {
-    component        = "catalogue"
-    instance_type    = "t3.micro"
-    desired_capacity = 1
-    max_size         = 4
-    min_size         = 1
-    subnet_name      = "app"
-    port             = 8080
-    allow_app_to     = "app"
-    alb              = "private"
+    component         = "catalogue"
+    instance_type     = "t3.micro"
+    desired_capacity  = 1
+    max_size          = 4
+    min_size          = 1
+    subnet_name       = "app"
+    port              = 8080
+    allow_app_to      = "app"
+    alb               = "private"
+    listener_priority = 10
   }
   cart = {
     component        = "cart"
@@ -125,6 +126,7 @@ app = {
     port             = 8080
     allow_app_to     = "app"
     alb              = "private"
+    listener_priority = 20
   }
   user = {
     component        = "user"
@@ -136,6 +138,7 @@ app = {
     port             = 8080
     allow_app_to     = "app"
     alb              = "private"
+    listener_priority = 30
   }
   shipping = {
     component        = "shipping"
@@ -147,6 +150,7 @@ app = {
     port             = 8080
     allow_app_to     = "app"
     alb              = "private"
+    listener_priority = 40
   }
   payment = {
     component        = "payment"
@@ -158,6 +162,7 @@ app = {
     port             = 8080
     allow_app_to     = "app"
     alb              = "private"
+    listener_priority = 50
   }
   frontend = {
     component        = "frontend"
@@ -169,5 +174,6 @@ app = {
     port             = 80
     allow_app_to     = "public"
     alb              = "public"
+    listener_priority = 10
   }
 }
