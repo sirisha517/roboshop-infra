@@ -10,7 +10,7 @@ module "vpc" {
   private_subnets = each.value["private_subnets"]
 }
 module "docdb" {
-  source = "git::https://github.com/sirisha517/tf-module-docdb.git"
+  source = "git::https://github.com/sirisha517/tf-module-db.git"
   env    = var.env
   tags   = var.tags
 
