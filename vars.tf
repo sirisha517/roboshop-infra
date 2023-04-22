@@ -5,7 +5,7 @@ variable "default_route_table" {}
 variable "vpc" {}
 variable "docdb" {}
 variable "rds" {}
-variable "elasticache" {}
+variable "elasticcache" {}
 variable "rabbitmq" {}
 variable "alb" {}
 variable "app" {}
