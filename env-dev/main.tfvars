@@ -103,7 +103,7 @@ alb = {
   }
 }
 
-app = {
+apps = {
   catalogue = {
     component         = "catalogue"
     instance_type     = "t3.micro"
@@ -117,27 +117,27 @@ app = {
     listener_priority = 10
   }
   cart = {
-    component        = "cart"
-    instance_type    = "t3.micro"
-    desired_capacity = 1
-    max_size         = 4
-    min_size         = 1
-    subnet_name      = "app"
-    port             = 8080
-    allow_app_to     = "app"
-    alb              = "private"
+    component         = "cart"
+    instance_type     = "t3.micro"
+    desired_capacity  = 1
+    max_size          = 4
+    min_size          = 1
+    subnet_name       = "app"
+    port              = 8080
+    allow_app_to      = "app"
+    alb               = "private"
     listener_priority = 11
   }
   user = {
-    component        = "user"
-    instance_type    = "t3.micro"
-    desired_capacity = 1
-    max_size         = 4
-    min_size         = 1
-    subnet_name      = "app"
-    port             = 8080
-    allow_app_to     = "app"
-    alb              = "private"
+    component         = "user"
+    instance_type     = "t3.micro"
+    desired_capacity  = 1
+    max_size          = 4
+    min_size          = 1
+    subnet_name       = "app"
+    port              = 8080
+    allow_app_to      = "app"
+    alb               = "private"
     listener_priority = 12
   }
   shipping = {
