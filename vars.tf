@@ -8,6 +8,6 @@ variable "rds" {}
 variable "elasticcache" {}
 variable "rabbitmq" {}
 variable "alb" {}
-variable "app" {}
+variable "apps" {}
 variable "bastion_cidr" {}
 variable "dns_domain" {}

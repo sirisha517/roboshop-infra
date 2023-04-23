@@ -83,7 +83,7 @@ module "alb" {
   allow_cidr         = each.value["allow_cidr"]
 }
 
-module "app" {
+module "apps" {
   source             = "git::https://github.com/sirisha517/tf-module-app.git"
   env                = var.env
   tags               = var.tags
@@ -92,7 +92,7 @@ module "app" {
 
   vpc_id             = module.vpc["main"].vpc_id
 
-  for_each           = var.app
+  for_each           = var.apps
   component          = each.value["component"]
   instance_type      = each.value["instance_type"]
   desired_capacity   = each.value["desired_capacity"]
