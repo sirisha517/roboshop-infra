@@ -10,4 +10,4 @@ variable "rabbitmq" {}
 variable "alb" {}
 variable "app" {}
 variable "bastion_cidr" {}
-variable "alb_dns_domain" {}
+variable "dns_domain" {}
