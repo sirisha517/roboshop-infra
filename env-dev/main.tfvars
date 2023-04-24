@@ -93,7 +93,6 @@ alb = {
     load_balancer_type = "application"
     allow_cidr         = ["0.0.0.0/0"]
   }
-
   private = {
     subnet_name        = "app"
     name               = "private"

@@ -4,13 +4,15 @@ module "vpc" {
   tags                = var.tags
   default_route_table = var.default_route_table
   default_vpc_id      = var.default_vpc_id
+
   for_each        = var.vpc
   vpc_cidr        = each.value["vpc_cidr"]
   public_subnets  = each.value["public_subnets"]
   private_subnets = each.value["private_subnets"]
 }
+
 module "docdb" {
-  source = "git::https://github.com/sirisha517/tf-module-db.git"
+  source = "git::https://github.com/sirisha517/tf-module-docdb.git"
   env    = var.env
   tags   = var.tags
 
@@ -58,7 +60,7 @@ module "elasticcache" {
 }
 
 module "rabbitmq" {
-  source = "git::https://github.com/sirisha517/tf-module-rabbitmq.git"
+  source        = "git::https://github.com/sirisha517/tf-module-rabbitmq.git"
   env    = var.env
   tags   = var.tags
 
@@ -68,6 +70,7 @@ module "rabbitmq" {
   instance_type = each.value["instance_type"]
 
 }
+
 module "alb" {
   source = "git::https://github.com/sirisha517/tf-module-alb.git"
   env    = var.env
@@ -88,7 +91,7 @@ module "apps" {
   env                = var.env
   tags               = var.tags
   bastion_cidr       = var.bastion_cidr
-  dns_domain       = var.dns_domain
+  dns_domain         = var.dns_domain
 
   vpc_id             = module.vpc["main"].vpc_id
 
@@ -98,14 +101,14 @@ module "apps" {
   desired_capacity   = each.value["desired_capacity"]
   max_size           = each.value["max_size"]
   min_size           = each.value["min_size"]
-  listener_priority  = each.value["listener_priority"]
   port               = each.value["port"]
+  listener_priority  = each.value["listener_priority"]
   subnets            = lookup(local.subnet_ids, each.value["subnet_name"], null)
   allow_app_to       = lookup(local.subnet_cidr, each.value["allow_app_to"], null)
-  alb_dns_name       = lookup(lookup(lookup(module.alb,each.value["alb"],null),"alb",null),"dns_name",null)
-  listener_arn       = lookup(lookup(lookup(module.alb,each.value["alb"],null),"listener",null),"arn",null)
-
+  alb_dbs_name       = lookup(lookup(lookup(module.alb, each.value["alb"], null), "alb", null), "dns_name", null)
+  listener_arn       = lookup(lookup(lookup(module.alb, each.value["alb"], null), "listener", null), "arn", null)
 }
+
 output "alb" {
   value = module.alb
 }
