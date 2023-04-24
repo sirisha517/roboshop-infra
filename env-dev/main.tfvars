@@ -82,7 +82,9 @@ elasticcache = {
 }
 rabbitmq = {
   main = {
-    instance_type = "t3.micro"
+    instance_type     = "t3.micro"
+    component         = "rabbitmq"
+
   }
 }
 alb = {
