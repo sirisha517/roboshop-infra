@@ -12,11 +12,13 @@ module "vpc" {
 }
 
 module "docdb" {
-  source = "git::https://github.com/sirisha517/tf-module-db.git"
-  env    = var.env
-  tags   = var.tags
+  source                  = "git::https://github.com/sirisha517/tf-module-db.git"
+  env                     = var.env
+  tags                    = var.tags
 
-  subnet_ids = local.db_subnet_ids
+  subnet_ids              = local.db_subnet_ids
+  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
+  vpc_id                  = module.vpc["main"].vpc_id
 
   for_each                = var.docdb
   engine                  = each.value["engine"]
