@@ -113,5 +113,5 @@ module "apps" {
 }
 
 output "alb" {
-  value = module.alb
+  value = module.elasticcache
 }
