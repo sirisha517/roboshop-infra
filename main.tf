@@ -48,17 +48,19 @@ module "rds" {
 }
 
 module "elasticache" {
-  source = "git::https://github.com/sirisha517/tf-module-elasticcache.git"
-  env    = var.env
-  tags   = var.tags
+  source          = "git::https://github.com/sirisha517/tf-module-elasticcache.git"
+  env             = var.env
+  tags            = var.tags
 
-  subnet_ids = local.db_subnet_ids
+  subnet_ids      = local.db_subnet_ids
+  vpc_id          = module.vpc["main"].vpc_id
 
   for_each        = var.elasticache
   engine          = each.value["engine"]
   engine_version  = each.value["engine_version"]
   num_cache_nodes = each.value["num_cache_nodes"]
   node_type       = each.value["node_type"]
+  allow_subnets   = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
 
 }
 
@@ -90,6 +92,8 @@ module "alb" {
 }
 
 module "apps" {
+  depends_on         = [module.docdb,module.rds,module.elasticache,module.alb,module.rabbitmq]
+
   source             = "git::https://github.com/sirisha517/tf-module-app.git"
   env                = var.env
   tags               = var.tags
