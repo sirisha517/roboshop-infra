@@ -47,14 +47,14 @@ module "rds" {
   no_of_instances         = each.value["no_of_instances"]
 }
 
-module "elasticcache" {
+module "elasticache" {
   source = "git::https://github.com/sirisha517/tf-module-elasticcache.git"
   env    = var.env
   tags   = var.tags
 
   subnet_ids = local.db_subnet_ids
 
-  for_each        = var.elasticcache
+  for_each        = var.elasticache
   engine          = each.value["engine"]
   engine_version  = each.value["engine_version"]
   num_cache_nodes = each.value["num_cache_nodes"]
@@ -99,6 +99,7 @@ module "apps" {
   vpc_id             = module.vpc["main"].vpc_id
 
   for_each           = var.apps
+  parameters         = each.value["parameters"]
   component          = each.value["component"]
   instance_type      = each.value["instance_type"]
   desired_capacity   = each.value["desired_capacity"]
@@ -113,5 +114,5 @@ module "apps" {
 }
 
 output "alb" {
-  value = module.elasticcache
+  value = module.elasticache
 }
