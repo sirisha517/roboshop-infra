@@ -18,7 +18,7 @@ parameters = [
   { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.devops517test.online:27017/users", type = "String" },
   { name = "dev.cart.redis_host", value = "redis-dev.devops517test.online", type = "String" },
   { name = "dev.cart.catalogue_host", value = "catalogue-dev.devops517test.online", type = "String" },
-  { name = "dev.cart.catalogue_port", value = "8080", type = "String" }
+  { name = "dev.cart.catalogue_port", value = "80", type = "String" }
 ]
 
 ### THIS IS NOT GOING TO BE THE PRACTICE IN COMPANIES, WE SHOULD NOT KEEP PASSWORDS IN GIT REPOS
