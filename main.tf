@@ -32,11 +32,11 @@ module "docdb" {
 }
 
 module "rds" {
-  source = "git::https://github.com/sirisha517/tf-module-rds.git"
-  env    = var.env
-  tags   = var.tags
+  source                  = "git::https://github.com/sirisha517/tf-module-rds.git"
+  env                     = var.env
+  tags                    = var.tags
 
-  subnet_ids = local.db_subnet_ids
+  subnet_ids              = local.db_subnet_ids
   vpc_id                  = module.vpc["main"].vpc_id
 
 
@@ -72,11 +72,15 @@ module "rabbitmq" {
   source        = "git::https://github.com/sirisha517/tf-module-rabbitmq.git"
   env    = var.env
   tags   = var.tags
+  bastion_cidr       = var.bastion_cidr
+  dns_domain         = var.dns_domain
 
   subnet_ids = local.db_subnet_ids
+  vpc_id          = module.vpc["main"].vpc_id
 
   for_each      = var.rabbitmq
   instance_type = each.value["instance_type"]
+  allow_subnets   = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
 
 }
 

@@ -86,6 +86,7 @@ elasticache = {
 rabbitmq = {
   main = {
     instance_type = "t3.micro"
+    allow_subnets   = "app"
   }
 }
 alb = {
@@ -157,7 +158,7 @@ apps = {
     allow_app_to      = "app"
     alb               = "private"
     listener_priority = 13
-    parameters = ["rds"]
+    parameters        = ["rds"]
   }
   payment = {
     component         = "payment"
@@ -170,7 +171,7 @@ apps = {
     allow_app_to      = "app"
     alb               = "private"
     listener_priority = 14
-    parameters = []
+    parameters        = []
   }
 
   frontend = {
