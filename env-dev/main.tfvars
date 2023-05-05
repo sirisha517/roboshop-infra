@@ -1,5 +1,5 @@
 env          = "dev"
-bastion_cidr = ["172.31.15.153/32"]
+bastion_cidr = ["172.31.12.248/32"]
 dns_domain   = "devops517test.online"
 
 vpc = {
@@ -110,7 +110,7 @@ apps = {
 
   catalogue = {
     component         = "catalogue"
-    instance_type     = "t3.micro"
+    instance_type     = "t3.small"
     desired_capacity  = 1
     max_size          = 4
     min_size          = 1
