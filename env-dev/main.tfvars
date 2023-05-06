@@ -1,6 +1,7 @@
 env          = "dev"
 bastion_cidr = ["172.31.12.248/32"]
 dns_domain   = "devops517test.online"
+monitoring_nodes = ["172.31.8.41/32"]
 
 vpc = {
   main = {
