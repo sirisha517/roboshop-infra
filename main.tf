@@ -126,6 +126,48 @@ module "apps" {
   listener_arn       = lookup(lookup(lookup(module.alb, each.value["alb"], null), "listener", null), "arn", null)
 }
 
+## LOAD RUNNER
+data "aws_ami" "ami" {
+  most_recent      = true
+  name_regex       = "devops-practice-with-ansible" //AMI NAME
+  owners           = ["self"] //OWNER
+}
+
+resource "aws_spot_instance_request" "load_runner" {
+  ami                     = data.aws_ami.ami
+  instance_type           = "t3.medium"
+  subnet_id               = lookup(local.subnet_ids, "public", null)[0]
+  wait_for_fulfillment    = true
+  vpc_security_group_ids  = [aws_spot_instance_request.load_runner.id]
+
+
+tags = merge(
+  var.tags,
+  { Name = "load-runner"}
+)
+}
+resource "aws_security_group" "loadrunner" {
+  name        = "loadrunner"
+  description = "loadrunner"
+  vpc_id      = module.vpc["main"].vpc
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
 output "alb" {
   value = module.elasticache
 }
