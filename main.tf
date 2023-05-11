@@ -148,29 +148,8 @@ tags = merge(
 
 resource "aws_ec2_tag" "name-tag" {
   key         = "Name"
-  resource_id = aws_spot_instance_request.load_runner.id
+  resource_id = aws_spot_instance_request.load_runner.spot_instance_id
   value       = "load-runner"
-}
-resource "aws_security_group" "loadrunner" {
-  name        = "loadrunner"
-  description = "loadrunner"
-  vpc_id      = module.vpc["main"].vpc
-
-  ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
 }
 
 
