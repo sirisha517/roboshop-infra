@@ -146,6 +146,12 @@ tags = merge(
   { Name = "load-runner"}
 )
 }
+
+resource "aws_ec2_tag" "name-tag" {
+  key         = "Name"
+  resource_id = aws_spot_instance_request.load_runner.id
+  value       = "load-runner"
+}
 resource "aws_security_group" "loadrunner" {
   name        = "loadrunner"
   description = "loadrunner"
