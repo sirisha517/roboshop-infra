@@ -136,9 +136,8 @@ data "aws_ami" "ami" {
 resource "aws_spot_instance_request" "load_runner" {
   ami                     = data.aws_ami.ami
   instance_type           = "t3.medium"
-  subnet_id               = lookup(local.subnet_ids, "public", null)[0]
   wait_for_fulfillment    = true
-  vpc_security_group_ids  = [aws_spot_instance_request.load_runner.id]
+  vpc_security_group_ids  = ["allow-all"]
 
 
 tags = merge(
@@ -173,6 +172,7 @@ resource "aws_security_group" "loadrunner" {
     ipv6_cidr_blocks = ["::/0"]
   }
 }
+
 
 output "alb" {
   value = module.elasticache
